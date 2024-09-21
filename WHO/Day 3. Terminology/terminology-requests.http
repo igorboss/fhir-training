@@ -1,0 +1,132 @@
+#TermX demo server (demo/test server, public)
+@host = https://demo.termx.org/api/fhir
+
+#Ontoserver R5 public alpha test server
+#@host = https://ontoserver-r5.australiaeast.cloudapp.azure.com/fhir
+
+#HAPI R4 server
+#@host = https://hapi.fhir.org/baseR4
+
+#Grahame Grieve Tx server
+#@host = https://tx.fhir.org/r5
+
+#Official Snowstorm server
+#@host=https://browser.ihtsdotools.org/fhir
+
+# GENERAL QUERIES (comment out the appropriate resource)
+
+# TerminologyCapability
+###
+GET {{host}}/metadata?mode=terminology
+Accept: application/fhir+json
+
+
+@resource = ValueSet
+#@resource = CodeSystem
+#@resource = ConceptMap
+#@resource = NamingSystem
+
+
+# Get all resources by type from the terminology server
+###
+{{host}}/{{resource}}
+
+# Get all resources changed since date (remove prefix 'ge' for exact date)
+@date = 2023-07-07
+
+###
+{{host}}/{{resource}}/?date=ge{{date}}
+
+
+###
+{{host}}/CodeSystem
+
+# Get CodeSystem by id
+@id = administrative-gender--5.0.0
+
+###
+{{host}}/CodeSystem/{{id}}
+
+### Get by computable name
+{{host}}/CodeSystem?name=ICD
+
+### Get by title (human name)
+{{host}}/CodeSystem?title=ISO 3166
+
+### By url and version
+{{host}}/CodeSystem?version=9&url=https://fhir.ee/CodeSystem/rhk10
+
+### By identifier
+{{host}}/CodeSystem?identifier=urn:oid:1.3.6.1.4.1.28284.6.2.1.321
+
+### By concept code
+{{host}}/CodeSystem?code=C00
+
+
+
+
+# CODESYSTEM CONCEPT
+
+# Look up a specific code. Returns details of the concept from the code system.
+# The default version of SNOMED CT is defined in terminology server configuration. Therefore, the response from different servers may differ.
+# TEHIK terminology server uses SNOMED CT latest Estonian edition as the default version. 
+
+###
+{{host}}/CodeSystem/$lookup?system=http://snomed.info/sct&code=38907003
+
+# You can specify the version in the request
+###
+{{host}}/CodeSystem/$lookup?code=38907003&system=http://snomed.info/sct&version=http://snomed.info/sct/11000181102
+Accept: application/fhir+xml
+
+# Validate code against a code system or its specific version (remove version section for default version). See FHIR documentation for more parameters.
+###
+GET {{host}}/CodeSystem/$validate-code?code=male&url=http://hl7.org/fhir/administrative-gender
+
+### Validate using valid display
+GET {{host}}/CodeSystem/$validate-code?code=male&display=Male&url=http://hl7.org/fhir/administrative-gender
+
+### Validate using wrong display
+GET {{host}}/CodeSystem/$validate-code?code=male&display=Female&url=http://hl7.org/fhir/administrative-gender
+
+###
+POST {{host}}/CodeSystem/$validate-code
+Content-Type: application/json
+
+<@ ./param-gender.json
+
+###
+POST {{host}}/CodeSystem/$validate-code
+Content-Type: application/json
+
+<@ ./param-snomed.json
+
+
+###
+# Validate with cache-id and tx-resource
+###
+POST {{host}}/ValueSet/$validate-code
+Content-Type: application/fhir+json
+
+<@ ./param-snomed.json
+
+### Subsumes. ICD10
+{{host}}/CodeSystem/$subsumes?codeA=J10&codeB=J10.0&system=https://fhir.ee/CodeSystem/rhk10
+
+### Subsumes. Radiology
+{{host}}/CodeSystem/$subsumes?codeA=ANG&codeB=ANGAJ001&system=https://taltech.ee/fhir/CodeSystem/rad-service
+
+### Subsumed-by. Radiology
+{{host}}/CodeSystem/$subsumes?codeA=ANGAJ001&codeB=ANG&system=https://taltech.ee/fhir/CodeSystem/rad-service
+
+
+# Get value set definition by id
+@id = administrative-gender--5.0.0
+###
+{{host}}/ValueSet/{{id}}
+
+
+# Get value set expansion by id 
+# This provides the default expansion of the value set if it has been defined.
+###
+{{host}}/ValueSet/{{id}}/$expand

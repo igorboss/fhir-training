@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patient xmlns="http://hl7.org/fhir">
+    <identifier>
+        <system value="urn:pin:ssv.uz:pid:ni:uzb"/>
+        <value value="31002736540023"/>
+    </identifier>
+    <identifier>
+        <system value="http://fhir.ee/sid/pid/est"/>
+        <value value="37302102711"/>
+    </identifier>
+    <active value="true"/>
+    <name>
+        <use value="official"/>
+        <family value="Bossenko"/>
+        <given value="Igor"/>
+    </name>
+    <name>
+        <use value="usual"/>
+        <family value="Босенко"/>
+        <given value="Игорь"/>
+        <given value="Олегович"/>
+    </name>
+    <gender value="male"/>
+    <birthDate value="1973-02-10"/>
+    <address>
+        <line value="Kännu"/>
+        <city value="Tallinn"/>
+        <postalCode value="14215"/>
+        <country value="EST"/>
+    </address>
+</Patient>

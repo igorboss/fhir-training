@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patient xmlns="http://hl7.org/fhir">
+    <identifier>
+        <system value="http://fhir.ee/sid/pid/est"/>
+        <value value="37302102711"/>
+    </identifier>
+    <name>
+        <family value="Bossenko"/>
+        <given value="Igor"/>
+    </name>
+    <gender value="male"/>
+</Patient>

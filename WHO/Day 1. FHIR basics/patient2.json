@@ -1,0 +1,43 @@
+{
+  "resourceType": "Patient",
+  "identifier": [
+    {
+      "system": "urn:pin:ssv.uz:pid:ni:uzb",
+      "value": "31002736540023"
+    },
+    {
+      "system": "http://fhir.ee/sid/pid/est",
+      "value": "37302102711"
+    }
+  ],
+  "active": true,
+  "name": [
+    {
+      "use": "official",
+      "family": "Bossenko",
+      "given": [
+        "Igor"
+      ]
+    },
+    {
+      "use": "usual",
+      "family": "Босенко",
+      "given": [
+        "Игорь",
+        "Олегович"
+      ]
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1973-02-10",
+  "address": [
+    {
+      "line": [
+        "Kännu"
+      ],
+      "city": "Tallinn",
+      "postalCode": "14215",
+      "country": "EST"
+    }
+  ]
+}

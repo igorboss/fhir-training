@@ -1,0 +1,62 @@
+{
+    "resourceType": "CapabilityStatement",
+    "id": "logical-models",
+    "status": "active",
+    "date": "2024-09-20",
+    "publisher": "Taltech",
+    "kind": "capability",
+    "software": {
+        "name": "Logical models",
+        "version": "1.0.0"
+    },
+    "fhirVersion": "5.0.0",
+    "format": [
+        "json",
+        "xml"
+    ],
+    "rest": [
+        {
+            "mode": "server",
+            "resource": [
+                {
+                    "type": "BloodPressure",
+                    "profile": "https://taltech.ee/Model/BloodPressure",
+                    "interaction": [
+                        {
+                            "code": "read"
+                        },
+                        {
+                            "code": "vread"
+                        },
+                        {
+                            "code": "update"
+                        },
+                        {
+                            "code": "delete"
+                        },
+                        {
+                            "code": "history-instance"
+                        },
+                        {
+                            "code": "history-type"
+                        },
+                        {
+                            "code": "create"
+                        },
+                        {
+                            "code": "search-type"
+                        }
+                    ],
+                    "searchParam": [
+                        {
+                            "name": "patient",
+                            "type": "reference",
+                            "definition": "http://hl7.org/fhir/SearchParameter/BloodPressure-patient",
+                            "documentation": "Search by patient"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
