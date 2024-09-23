@@ -1,13 +1,22 @@
-#@base = https://hapi.fhir.org/baseR4
+#base = https://hapi.fhir.org/baseR4
 #@base = https://hapi.fhir.org/baseR5
+#@base = https://server.fire.ly
 @base = https://kefhir.kodality.dev/fhir 
+
+###
+
+https://hapi.fhir.org/baseR4/Patient
+
+###
+
+https://hapi.fhir.org/baseR4/Patient/596335
 
 ### List of Patient resources
 {{base}}/Patient
 
 ### Query single resource
 
-{{base}}/Patient/836034
+{{base}}/Patient/596335
 
 ### Simple search by name
 
@@ -16,7 +25,7 @@
 ### Create new patient
 
 POST {{base}}/Patient HTTP/1.1
-Content-Type: application/json
+Content-Type: application/fhir+json
 
 {
   "resourceType" : "Patient",
@@ -34,13 +43,13 @@ Content-Type: application/json
 }
 
 ### Update patient resource
-@patient-id = 5838519
 
-PUT {{base}}/Patient/{{patient-id}} HTTP/1.1
+PUT {{base}}/Patient/770934 HTTP/1.1
 Content-Type: application/json
 
 {
   "resourceType" : "Patient",
+  "id": "770934",
   "identifier" : [
     {
       "system" : "http://fhir.ee/sid/pid/est",
@@ -56,19 +65,25 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{base}}/Patient/{{patient-id}} HTTP/1.1
-
-### Ask deleted patient
-
-{{base}}/Patient/{{patient-id}}?_pretty=true
+DELETE {{base}}/Patient/770934 HTTP/1.1
 
 ###
 
-PUT {{base}}/Patient/{{patient-id}} HTTP/1.1
+https://hapi.fhir.org/baseR5/Patient/770934/_history/3
+
+### Ask deleted patient
+
+{{base}}/Patient/836034?_pretty=true
+
+
+###
+
+PUT {{base}}/Patient/770934 HTTP/1.1
 Content-Type: application/fhir+xml
 
 <?xml version="1.0" encoding="UTF-8"?>
 <Patient xmlns="http://hl7.org/fhir">
+    <id value="770934"/>
     <active value="true"/>
     <identifier>
         <system value="http://fhir.ee/sid/pid/est"/>
@@ -85,11 +100,11 @@ Content-Type: application/fhir+xml
 
 ### Ask deleted version of patient
 
-{{base}}/Patient/{{patient-id}}/_history/3
+{{base}}/Patient/770934/_history/3
 
 ### Use files as input for REST operations
 
-PUT {{base}}/Patient/{{patient-id}} HTTP/1.1
+PUT {{base}}/Patient/770934 HTTP/1.1
 Content-Type: application/json
 
 <@ ./patient2.json
@@ -120,9 +135,8 @@ Accept: application/json
 {{base}}/Patient?name=John&_count=50&_page=2
 Accept: application/json 
 
+
 # Advance search
-
-
 ### By gender
 {{base}}/Patient?gender=male
 
@@ -148,32 +162,32 @@ Accept: application/json
 {{base}}/Observation?code=http://loinc.org|72514-3
 &_sort:desc=date&_count=3
 
-@patient-id = 2792351
+@pid = 2792351
 
-### Pain measurement of patient {{patient-id}}
+### Pain measurement of patient {{pid}}
 {{base}}/Observation?code=http://loinc.org|72514-3
-&subject=Patient/{{patient-id}}
+&subject=Patient/{{pid}}
 
 ### Look for identifier of Patient
-{{base}}/Patient/{{patient-id}}
+{{base}}/Patient/{{pid}}
 
 ### Rewrite search of pain management using patient identifier
 {{base}}/Observation?code=http://loinc.org|72514-3
 &patient.identifier=https://github.com/synthetichealth/synthea|dc82a7c2-301e-3d59-33ec-6fd84fb3044b
 
 
-### Pain measurement of patient {{patient-id}} with patient include
+### Pain measurement of patient {{pid}} with patient include
 {{base}}/Observation?_include=Observation:subject
 &code=http://loinc.org|72514-3
-&subject=Patient/{{patient-id}}
+&subject=Patient/{{pid}}
 &_count=1
 
 ### Search for patient with exact id and ask for all him observations
-{{base}}/Patient?_id={{patient-id}}&_revinclude=Observation:subject
+{{base}}/Patient?_id={{pid}}&_revinclude=Observation:subject
 
 
 ### Compartment example
-{{base}}/Patient/{{patient-id}}/Observation
+{{base}}/Patient/{{pid}}/Observation
 
 
 ### Updated patient records since 2024-09-19
