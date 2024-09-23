@@ -1,5 +1,6 @@
 #@base = https://hapi.fhir.org/baseR5
-@base = https://kefhir.kodality.dev/fhir 
+@base = https://termx.taltech.ee/fhir
+#@base = https://kefhir.kodality.dev/fhir 
 
 
 ###
