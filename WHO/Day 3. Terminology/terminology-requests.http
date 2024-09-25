@@ -48,13 +48,13 @@ Accept: application/fhir+json
 {{host}}/CodeSystem/{{id}}
 
 ### Get by computable name
-{{host}}/CodeSystem?name=ICD
+{{host}}/CodeSystem?name=icd
 
 ### Get by title (human name)
 {{host}}/CodeSystem?title=ISO 3166
 
 ### By url and version
-{{host}}/CodeSystem?version=9&url=https://fhir.ee/CodeSystem/rhk10
+{{host}}/CodeSystem?version=9.0.0&url=https://fhir.ee/CodeSystem/rhk10
 
 ### By identifier
 {{host}}/CodeSystem?identifier=urn:oid:1.3.6.1.4.1.28284.6.2.1.321
@@ -65,12 +65,7 @@ Accept: application/fhir+json
 
 
 
-# CODESYSTEM CONCEPT
-
-# Look up a specific code. Returns details of the concept from the code system.
-# The default version of SNOMED CT is defined in terminology server configuration. Therefore, the response from different servers may differ.
-# TEHIK terminology server uses SNOMED CT latest Estonian edition as the default version. 
-
+# CodeSystem operations
 ###
 {{host}}/CodeSystem/$lookup?system=http://snomed.info/sct&code=38907003
 
@@ -89,19 +84,20 @@ GET {{host}}/CodeSystem/$validate-code?code=male&display=Male&url=http://hl7.org
 ### Validate using wrong display
 GET {{host}}/CodeSystem/$validate-code?code=male&display=Female&url=http://hl7.org/fhir/administrative-gender
 
-###
+### Validate using POST command (administrative gender)
 POST {{host}}/CodeSystem/$validate-code
 Content-Type: application/json
 
 <@ ./param-gender.json
 
-###
+### Validate using POST command (SNOMED)
 POST {{host}}/CodeSystem/$validate-code
 Content-Type: application/json
 
 <@ ./param-snomed.json
 
 
+# ValueSet operations
 ###
 # Validate with cache-id and tx-resource
 ###
@@ -110,13 +106,13 @@ Content-Type: application/fhir+json
 
 <@ ./param-snomed.json
 
-### Subsumes. ICD10
+### Subsumes. ICD10. J10 subsumes J10.0
 {{host}}/CodeSystem/$subsumes?codeA=J10&codeB=J10.0&system=https://fhir.ee/CodeSystem/rhk10
 
-### Subsumes. Radiology
+### Subsumes. Radiology. ANG subsumes ANGAJ001
 {{host}}/CodeSystem/$subsumes?codeA=ANG&codeB=ANGAJ001&system=https://taltech.ee/fhir/CodeSystem/rad-service
 
-### Subsumed-by. Radiology
+### Subsumed-by. Radiology. ANGAJ001 subsumed-by ANG
 {{host}}/CodeSystem/$subsumes?codeA=ANGAJ001&codeB=ANG&system=https://taltech.ee/fhir/CodeSystem/rad-service
 
 
@@ -130,3 +126,11 @@ Content-Type: application/fhir+json
 # This provides the default expansion of the value set if it has been defined.
 ###
 {{host}}/ValueSet/{{id}}/$expand
+
+### Designations included and display in English
+
+https://demo.termx.org/api/fhir/ValueSet/rad-laterality--1.0.0/$expand?includeDesignations=true&displayLanguage=en
+
+### Designations included and display in Estonian language
+
+https://demo.termx.org/api/fhir/ValueSet/rad-laterality--1.0.0/$expand?includeDesignations=true&displayLanguage=et
