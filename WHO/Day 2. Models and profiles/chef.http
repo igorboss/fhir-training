@@ -6,7 +6,9 @@
 POST {{chef}}/v2/fsh2fhir
 Content-Type: application/fsh; version=0.0.1; fhirVersion=5.0.0
 
-<@ ./BloodPressureDefinition.fsh
+<@ ./MyOrganization.fsh
+
+#<@ ./BloodPressureDefinition.fsh
 
 ### V2 FHIR -> FSH
 
@@ -14,7 +16,7 @@ Content-Type: application/fsh; version=0.0.1; fhirVersion=5.0.0
 POST {{chef}}/v2/fhir2fsh
 Content-Type: application/fhir+json; fhirVersion=5.0.0 
 
-<@ ./BloodPressureDefinitionInArray.json
+<@ ./MyOrganization.json
 
 ### V1 FSH -> FHIR
 

@@ -14600,7 +14600,8 @@
                     "type": "Organization",
                     "profile": "http://hl7.org/fhir/StructureDefinition/Organization",
                     "supportedProfile": [
-                        "https://fhir.ee/StructureDefinition/ee-organization"
+                        "https://fhir.ee/StructureDefinition/ee-organization", 
+                        "http://example.org/StructureDefinition/MyOrganization"
                     ],
                     "interaction": [
                         {

@@ -1,0 +1,33 @@
+{
+    "resourceType": "StructureDefinition",
+    "id": "MyOrganization",
+    "url": "http://example.org/StructureDefinition/MyOrganization",
+    "version": "0.0.1",
+    "name": "MyOrganization",
+    "status": "draft",
+    "fhirVersion": "5.0.0",
+    "kind": "resource",
+    "abstract": false,
+    "type": "Organization",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Organization",
+    "derivation": "constraint",
+    "differential": {
+        "element": [
+            {
+                "id": "Organization.name",
+                "path": "Organization.name",
+                "min": 1
+            },
+            {
+                "id": "Organization.alias",
+                "path": "Organization.alias",
+                "max": "0"
+            },
+            {
+                "id": "Organization.qualification",
+                "path": "Organization.qualification",
+                "max": "0"
+            }
+        ]
+    }
+}

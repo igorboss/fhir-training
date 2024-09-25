@@ -1,7 +1,7 @@
-#base = https://hapi.fhir.org/baseR4
+@base = https://hapi.fhir.org/baseR4
 #@base = https://hapi.fhir.org/baseR5
 #@base = https://server.fire.ly
-@base = https://kefhir.kodality.dev/fhir 
+#@base = https://kefhir.kodality.dev/fhir 
 
 ###
 
@@ -117,7 +117,7 @@ Content-Type: application/json
 ### List of patients in XML format
 
 {{base}}/Patient?name=Igor
-Accept: application/fhir+xml
+Accept: application/fhir+json
 
 # Pagination
 ### List of patients with name John
@@ -127,7 +127,7 @@ Accept: application/json
 
 ### List of patients with name John with page size 50 patients
 
-{{base}}/Patient?name=John&_count=50
+{{base}}/Patient?name=John&_count=1
 Accept: application/json 
 
 ### List of patients with name John from 51 to 100 records
@@ -140,27 +140,28 @@ Accept: application/json
 ### By gender
 {{base}}/Patient?gender=male
 
+###
+
+{{base}}/Patient?family:exact=Rodgers&given=Nor
+
 ### By surname and firstname (show FHIRPath)
 {{base}}/Patient?name.family=Gusikow&name.given=John
 
 ### By exact surname and firstname
 {{base}}/Patient?name.family:exact=Gusikowski974&name.given:exact=John
 
-### By identifier value
-{{base}}/Patient?identifier.value=37302102711
 
 ### By identifier
 {{base}}/Patient?identifier=37302102711
 
 ### 
-{{base}}/Patient?identifier=http://fhir.ee/sid/pid/est|37302102711
+{{base}}/Patient?identifier=http://politsei.ee|37302102711
 
 ### List of observations
 {{base}}/Observation
 
 ### 3 lates observations of pain measurement. Question - what date used here?
-{{base}}/Observation?code=http://loinc.org|72514-3
-&_sort:desc=date&_count=3
+{{base}}/Observation?_sort:desc=date&_count=30
 
 @pid = 2792351
 
@@ -177,10 +178,10 @@ Accept: application/json
 
 
 ### Pain measurement of patient {{pid}} with patient include
-{{base}}/Observation?_include=Observation:subject
-&code=http://loinc.org|72514-3
-&subject=Patient/{{pid}}
+{{base}}/Observation?subject=Patient/44948621
 &_count=1
+&_include=Observation:subject
+
 
 ### Search for patient with exact id and ask for all him observations
 {{base}}/Patient?_id={{pid}}&_revinclude=Observation:subject

@@ -1,6 +1,5 @@
 #@base = https://hapi.fhir.org/baseR5
-@base = https://termx.taltech.ee/fhir
-#@base = https://kefhir.kodality.dev/fhir 
+@base = https://kefhir.kodality.dev/fhir 
 
 @chef = https://demo.termx.org/chef
 //@chef = https://termx.taltech.ee/chef
@@ -23,7 +22,11 @@ Content-Type: application/fhir+json; fhirVersion=5.0.0
 POST {{base}}/StructureDefinition/$validate
 Content-Type: application/fhir+json
 
-<@ ./BloodPressureDefinition.json
+<@ ./ee-organization.json
+
+#<@ ./MyOrganization.json
+
+#<@ ./BloodPressureDefinition.json
 
 ### Upload structure definition to the FHIR server
 
@@ -61,10 +64,13 @@ Content-Type: application/fhir+json
 <@ CapabilityStatement-logical-models.json
 
 ### Upload ee-organization profile
-PUT {{base}}/StructureDefinition/ee-organization
+PUT {{base}}/StructureDefinition/MyOrganization
 Content-Type: application/fhir+json
 
-<@ ./ee-organization.json
+<@ ./MyOrganization.json
+
+
+#<@ ./ee-organization.json
 
 ### Check uploaded profile
 {{base}}/StructureDefinition?url=https://fhir.ee/StructureDefinition/ee-organization
@@ -98,4 +104,14 @@ PUT {{base}}/Organization/768792
 Content-Type: application/fhir+json
 
 <@ ./ee-organization-ehif-invalid.json
+
+
+
+
+
+### Example33 my-organization
+POST {{base}}/Organization/
+Content-Type: application/fhir+json
+
+<@ ./my-organization.json
 

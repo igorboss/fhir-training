@@ -7,11 +7,11 @@
     },
     {
       "name": "url",
-      "valueUri": "http://hl7.org/fhir/administrative-gender"
+      "valueUrl": "http://hl7.org/fhir/administrative-gender"
     },    
     {
       "name": "code",
-      "valueCode": "male"
+      "valueString": "male"
     }
   ]
 }

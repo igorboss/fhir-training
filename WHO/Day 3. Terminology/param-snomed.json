@@ -3,7 +3,7 @@
     "parameter": [
         {
             "name": "url",
-            "valueUri": "http://snomed.info/sct"
+            "valueUrl": "http://snomed.info/sct"
         },
         {
             "name": "code",
@@ -11,7 +11,7 @@
         },
         {
             "name": "version",
-            "valueUri": "http://snomed.info/sct/11000181102"
+            "valueUrl": "http://snomed.info/sct/11000181102"
         }
     ]
 }
