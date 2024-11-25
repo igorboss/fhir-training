@@ -1,0 +1,22 @@
+{
+    "resourceType": "Parameters",
+    "parameter": [
+        {
+            "name": "url",
+            "valueUrl": "https://termx.org/fhir/MapSet/sex-to-gender"
+        },
+        {
+            "name": "system",
+            "valueUrl": "https://example.org/fhir/CodeSystem/sugu"
+        },
+        {
+            "name": "sourceCode",
+            "valueString": "M"
+        },
+        {
+            "name": "targetSystem",
+            "valueUrl": "http://hl7.org/fhir/CodeSystem/administrative-gender"
+        }
+    ]
+}
+
