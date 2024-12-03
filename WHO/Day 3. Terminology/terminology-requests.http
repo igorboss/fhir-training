@@ -13,6 +13,9 @@
 #Official Snowstorm server
 #@host=https://browser.ihtsdotools.org/fhir
 
+# development environment
+@host = http://localhost:8200/fhir
+
 # GENERAL QUERIES (comment out the appropriate resource)
 
 # TerminologyCapability
@@ -139,12 +142,12 @@ https://demo.termx.org/api/fhir/ValueSet/rad-laterality--1.0.0/$expand?includeDe
 
 
 ### Translation of the code in ConceptMap (GET)
-https://demo.termx.org/api/fhir/ConceptMap/$translate?url=https://termx.org/fhir/MapSet/sex-to-gender&sourceCode=M&system=https://example.org/fhir/CodeSystem/sugu&targetSystem=http://hl7.org/fhir/ValueSet/administrative-gender
+{{host}}/ConceptMap/$translate?url=https://termx.org/fhir/MapSet/sex-to-gender&sourceCode=M&system=https://example.org/fhir/CodeSystem/sugu&targetSystem=http://hl7.org/fhir/ValueSet/administrative-gender
 
 
 
 ### Translation of the code in ConceptMap (POST)
-POST https://demo.termx.org/api/fhir/ConceptMap/$translate
+POST {{host}}/ConceptMap/$translate
 Content-Type: application/fhir+json
 
 <@ ./param-sex2gender.json
