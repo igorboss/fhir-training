@@ -1,0 +1,41 @@
+# This script is designed for the REST Client for Visual Studio developed by Huachao Mao
+#Dev server
+@host = http://193.34.69.248:8080
+
+
+#
+# Transform FHIR StructureDefinition to PlantUML
+# API: /api/fhir2uml
+# Supported headers
+# Accept: application/json (default) - the format of input FHIR StructureDefinition (currently only snapshot supported. In the future, differential will be supported also ";view=differential")
+# Content-Type: text/plain (default), image/png - the format of the response (PlantUML source code or image)
+# Content-Disposition: inline (default), attachment - controls whether the response is displayed inline or saved as an attachment.
+#
+
+# Example 1: Transform EE MaritalStatus profile to PlantUML source code
+###
+POST {{host}}/api/fhir2uml
+Accept: application/json
+Content-Type: text/plain
+
+<@ ./StructureDefinition-ee-mpi-socialhistory-marital-status.json
+
+# Example 2: Transform EE MaritalStatus profile to image generated from the PlantUML source code
+###
+POST {{host}}/api/fhir2uml
+Accept: application/json
+Content-Type: image/png
+Content-Disposition: attachment
+
+<@ ./StructureDefinition-ee-mpi-socialhistory-marital-status.json
+
+
+# Example 3: Transform EE Patient profile to image with an exact file
+###
+POST {{host}}/api/fhir2uml
+Accept: application/json
+Content-Type: image/png
+Content-Disposition: attachment;filename="EEPatient.png"
+
+<@ ./StructureDefinition-ee-patient.json
+
