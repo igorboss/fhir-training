@@ -39,3 +39,22 @@ Content-Disposition: attachment;filename="EEPatient.png"
 
 <@ ./StructureDefinition-ee-patient.json
 
+# Example 4: Transform FHIR Patient profile to image
+###
+POST {{host}}/api/fhir2uml
+Content-Type: image/png
+
+<@ ./StructureDefinition-Patient.json
+
+# Example 4: Transform logical model to UML
+###
+POST {{host}}/api/fhir2uml
+
+<@ ./StructureDefinition-BloodPressureModel.json
+
+# Example 5: Transform logical model to image
+###
+POST {{host}}/api/fhir2uml
+Content-Type: image/png
+
+<@ ./StructureDefinition-BloodPressureModel.json
