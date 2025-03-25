@@ -9,7 +9,7 @@ https://hapi.fhir.org/baseR4/Patient
 
 ###
 
-https://hapi.fhir.org/baseR4/Patient/596335
+https://hapi.fhir.org/baseR4/Patient/596767
 
 ### List of Patient resources
 {{base}}/Patient
@@ -20,7 +20,13 @@ https://hapi.fhir.org/baseR4/Patient/596335
 
 ### Simple search by name
 
+{{base}}/Patient?identifier=37302102711
+
+### Simple search by name (output in XML format)
+
 {{base}}/Patient?name=Igor
+Content-Type: application/fhir+xml
+
 
 ### Create new patient
 
@@ -44,12 +50,12 @@ Content-Type: application/fhir+json
 
 ### Update patient resource
 
-PUT {{base}}/Patient/770934 HTTP/1.1
+PUT {{base}}/Patient/46659886 HTTP/1.1
 Content-Type: application/json
 
 {
   "resourceType" : "Patient",
-  "id": "770934",
+  "id": "46659886",
   "identifier" : [
     {
       "system" : "http://fhir.ee/sid/pid/est",
@@ -58,14 +64,19 @@ Content-Type: application/json
   ],
   "name" : [{
     "family" : "Bossenko",
-    "given" : ["Igor"]
+    "given" : ["Igor","Oleg"]
   }],
   "gender" : "male",
   "birthDate": "1973-02-10"
 }
 
 ###
-DELETE {{base}}/Patient/770934 HTTP/1.1
+
+{{base}}/Patient/46659886/_history/3
+
+###
+
+DELETE {{base}}/Patient/46659886 HTTP/1.1
 
 ###
 
