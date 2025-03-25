@@ -30,21 +30,24 @@ Content-Disposition: attachment
 <@ ./StructureDefinition-ee-mpi-socialhistory-marital-status.json
 
 
-# Example 3: Transform EE Patient profile to image with an exact file
+# Example 3: Transform FHIR Patient profile to image
 ###
 POST {{host}}/api/fhir2uml
 Accept: application/json
+Content-Type: image/png
+
+<@ ./StructureDefinition-Patient.json
+
+
+# Example 4: Transform EE Patient profile to image with an exact file
+###
+POST {{host}}/api/fhir2uml
+Accept: application/json; view=differential
 Content-Type: image/png
 Content-Disposition: attachment;filename="EEPatient.png"
 
 <@ ./StructureDefinition-ee-patient.json
 
-# Example 4: Transform FHIR Patient profile to image
-###
-POST {{host}}/api/fhir2uml
-Content-Type: image/png
-
-<@ ./StructureDefinition-Patient.json
 
 # Example 4: Transform logical model to UML
 ###
