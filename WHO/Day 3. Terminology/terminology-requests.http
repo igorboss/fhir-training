@@ -14,7 +14,7 @@
 #@host=https://browser.ihtsdotools.org/fhir
 
 # development environment
-@host = http://localhost:8200/fhir
+#@host = http://localhost:8200/fhir
 
 # GENERAL QUERIES (comment out the appropriate resource)
 
@@ -48,7 +48,7 @@ Accept: application/fhir+json
 @id = administrative-gender--5.0.0
 
 ###
-{{host}}/CodeSystem/{{id}}
+GET {{host}}/CodeSystem/{{id}}
 
 ### Get by computable name
 {{host}}/CodeSystem?name=icd
