@@ -45,6 +45,11 @@ POST {{host}}/api/fhir2uml
 Accept: application/json; view=differential
 Content-Type: image/png
 Content-Disposition: attachment;filename="EEPatient.png"
+X-Show-Bindings: true
+X-Reduce-Slice-Classes: true
+X-Hide-Removed-Objects: true
+X-Show-Constraints: false
+X-Hide-Legend: true
 
 <@ ./StructureDefinition-ee-patient.json
 
